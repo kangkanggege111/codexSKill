@@ -2,6 +2,9 @@
 
 This repository mirrors `C:\Users\admin\.codex\skills` so the same Codex skills can be cloned onto other machines.
 
+Quick operator guide:
+- See [COMMANDS.md](COMMANDS.md) for the exact commands to sync locally, inspect status, view logs, and push manually.
+
 ## Layout
 
 - `skills/`: mirrored Codex skills, including `.system/` and custom skills
