@@ -50,4 +50,11 @@ powershell -ExecutionPolicy Bypass -File .\scripts\install-skills.ps1
 - Treat `C:\Users\admin\.codex\skills` as the source of truth on this machine.
 - Mirror all skill directories, including `.system/`, into the repo `skills/` directory.
 - Use repository scripts rather than ad hoc copy commands when the task is about syncing or backing up.
-- When troubleshooting sync, inspect `git status`, `git remote -v`, and the scheduled task definition before changing scripts.
+- When troubleshooting sync, inspect `git status`, `git remote -v`, and the watcher startup entry before changing scripts.
+
+## Authoring Convention
+
+- Write skill rules, workflow steps, and repository procedures in English.
+- Write human-oriented comments or explanatory notes in Chinese when comments are needed.
+- Keep commands, paths, environment variables, git terms, and file names in their original technical language.
+- If a Chinese phrase appears inside the skill body, use it only as a trigger example or a user-facing explanation.

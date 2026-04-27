@@ -30,6 +30,13 @@ Use this skill for Qt Widgets styling work. Treat the bundled `QtQss` examples a
 - Preserve readability. If a visual effect needs too many gradients or border overrides, simplify before expanding coverage.
 - When the user asks for a new theme, start by choosing one bundled theme family and adapt it instead of inventing dozens of unrelated rules.
 
+## Authoring Convention
+
+- Write skill rules, headings, workflow steps, and machine-facing instructions in English.
+- Write explanatory comments for humans in Chinese when comments are needed.
+- Keep code identifiers, file names, selectors, palette tokens, and command examples in their original technical language.
+- Do not mix bilingual wording inside the same rule sentence unless the Chinese phrase is itself a user trigger or a literal example.
+
 ## Theme Selection
 
 Use these defaults unless the user specifies a visual direction:
