@@ -25,4 +25,4 @@ powershell -ExecutionPolicy Bypass -File .\scripts\install-skills.ps1
 
 ## Auto-sync
 
-This repo is prepared to run `scripts/watch-codex-skills.ps1` at logon. The watcher debounces file changes, mirrors `~/.codex/skills` into `skills/`, commits updates, and pushes them to `origin/main`.
+This repo is prepared to run `scripts/watch-codex-skills.ps1` at logon through the Windows Startup folder. The watcher debounces file changes, mirrors `~/.codex/skills` into `skills/`, commits updates, and pushes them to `origin/main`.

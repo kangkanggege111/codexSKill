@@ -6,6 +6,11 @@ param(
 
 $ErrorActionPreference = "Stop"
 
+$mutex = New-Object System.Threading.Mutex($false, "Global\CodexSkillAutoSyncWatcher", [ref]$createdNew)
+if (-not $createdNew) {
+    exit 0
+}
+
 if (-not (Test-Path $SourceDir)) {
     throw "Source skill directory not found: $SourceDir"
 }
@@ -15,12 +20,29 @@ if (-not (Test-Path $syncScript)) {
     throw "Sync script not found: $syncScript"
 }
 
+$logDir = Join-Path $RepoDir "logs"
+if (-not (Test-Path $logDir)) {
+    New-Item -ItemType Directory -Force -Path $logDir | Out-Null
+}
+$logFile = Join-Path $logDir "watch-codex-skills.log"
+
+function Write-Log([string]$Message) {
+    $line = "[{0}] {1}" -f (Get-Date -Format "yyyy-MM-dd HH:mm:ss"), $Message
+    Add-Content -Path $logFile -Value $line
+}
+
 $global:PendingSync = $false
 $global:LastEventAt = Get-Date
 
 function Invoke-Sync {
     $global:PendingSync = $false
-    & $syncScript -SourceDir $SourceDir -RepoDir $RepoDir -Push -Quiet
+    try {
+        & $syncScript -SourceDir $SourceDir -RepoDir $RepoDir -Push -Quiet
+        Write-Log "Sync completed."
+    }
+    catch {
+        Write-Log "Sync failed: $($_.Exception.Message)"
+    }
 }
 
 $watcher = New-Object System.IO.FileSystemWatcher
@@ -40,6 +62,7 @@ $deleted = Register-ObjectEvent $watcher Deleted -Action $action
 $renamed = Register-ObjectEvent $watcher Renamed -Action $action
 
 try {
+    Write-Log "Watcher started for $SourceDir"
     while ($true) {
         Start-Sleep -Seconds 2
         if ($global:PendingSync) {
@@ -56,4 +79,6 @@ finally {
     Unregister-Event -SourceIdentifier $deleted.Name
     Unregister-Event -SourceIdentifier $renamed.Name
     $watcher.Dispose()
+    $mutex.ReleaseMutex() | Out-Null
+    $mutex.Dispose()
 }
