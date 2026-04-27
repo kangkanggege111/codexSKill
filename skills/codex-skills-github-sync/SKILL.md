@@ -55,6 +55,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\install-skills.ps1
 ## Authoring Convention
 
 - Write skill rules, workflow steps, and repository procedures in English.
-- Write human-oriented comments or explanatory notes in Chinese when comments are needed.
+- Write explanatory comments in `SKILL.md` in Chinese.
+- Write supplementary notes, caveats, and human-facing hints in `SKILL.md` in Chinese.
 - Keep commands, paths, environment variables, git terms, and file names in their original technical language.
 - If a Chinese phrase appears inside the skill body, use it only as a trigger example or a user-facing explanation.

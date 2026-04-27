@@ -33,7 +33,8 @@ Use this skill for Qt Widgets styling work. Treat the bundled `QtQss` examples a
 ## Authoring Convention
 
 - Write skill rules, headings, workflow steps, and machine-facing instructions in English.
-- Write explanatory comments for humans in Chinese when comments are needed.
+- Write explanatory comments in `SKILL.md` in Chinese.
+- Write supplementary notes, caveats, and human-facing hints in `SKILL.md` in Chinese.
 - Keep code identifiers, file names, selectors, palette tokens, and command examples in their original technical language.
 - Do not mix bilingual wording inside the same rule sentence unless the Chinese phrase is itself a user trigger or a literal example.
 
