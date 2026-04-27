@@ -6,6 +6,7 @@ param(
 
 $ErrorActionPreference = "Stop"
 
+$createdNew = $false
 $mutex = New-Object System.Threading.Mutex($false, "Global\CodexSkillAutoSyncWatcher", [ref]$createdNew)
 if (-not $createdNew) {
     exit 0
