@@ -37,7 +37,7 @@ $global:LastEventAt = Get-Date
 function Invoke-Sync {
     $global:PendingSync = $false
     try {
-        & $syncScript -SourceDir $SourceDir -RepoDir $RepoDir -Push -Quiet
+        & $syncScript -SourceDir $SourceDir -RepoDir $RepoDir -Quiet
         Write-Log "Sync completed."
     }
     catch {

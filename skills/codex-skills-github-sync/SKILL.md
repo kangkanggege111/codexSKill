@@ -1,6 +1,6 @@
 ---
 name: codex-skills-github-sync
-description: Sync, back up, install, or push Codex skills to a GitHub repository. Use when Codex needs to mirror `~/.codex/skills` into a git repo, commit or push new skills, install mirrored skills onto another machine, or maintain automatic GitHub sync for Codex skills. Also use when the user asks in Chinese to "同步 skill", "备份 skills", "推送 skill 到 GitHub", "把 Codex skill 上传到仓库", or "在别的电脑同步这些 skill".
+description: Sync, back up, install, or push Codex skills to a GitHub-backed local repository. Use when Codex needs to mirror `~/.codex/skills` into a git repo, commit new skills locally, install mirrored skills onto another machine, or maintain automatic local sync for Codex skills before a manual push. Also use when the user asks in Chinese to "同步 skill", "备份 skills", "推送 skill 到 GitHub", "把 Codex skill 上传到仓库", or "在别的电脑同步这些 skill".
 ---
 
 # Codex Skills GitHub Sync
@@ -16,12 +16,20 @@ Use this skill when the task is about backing up local Codex skills into the ded
 
 ## Standard Actions
 
-### Push current local skills
+### Sync current local skills into the local repository
 
 Run:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File D:\github\CodexSkill-myGitHub\codexSKill\scripts\sync-codex-skills.ps1 -Push
+powershell -ExecutionPolicy Bypass -File D:\github\CodexSkill-myGitHub\codexSKill\scripts\sync-codex-skills.ps1
+```
+
+### Push to GitHub manually when needed
+
+Run from the repo root:
+
+```powershell
+git push
 ```
 
 ### Install mirrored skills onto another machine
@@ -34,8 +42,8 @@ powershell -ExecutionPolicy Bypass -File .\scripts\install-skills.ps1
 
 ### Keep future changes synced automatically
 
-- Ensure the watcher task `CodexSkillAutoSync` exists and points at `scripts/watch-codex-skills.ps1`.
-- If the task is missing or stale, recreate it instead of editing files manually.
+- Ensure the Startup shortcut `CodexSkillAutoSync.cmd` exists and points at `scripts/watch-codex-skills.ps1`.
+- The watcher should sync and commit locally only. Remote push stays manual.
 
 ## Working Rules
 
