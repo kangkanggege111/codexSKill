@@ -1,4 +1,4 @@
-param(
+﻿param(
     [string]$RepoDir = (Split-Path -Parent $PSScriptRoot),
     [string]$TargetDir = "$HOME\.codex\skills"
 )
@@ -14,6 +14,7 @@ if (-not (Test-Path $TargetDir)) {
     New-Item -ItemType Directory -Force -Path $TargetDir | Out-Null
 }
 
+# 把仓库里的 skills 镜像安装到目标机器的 ~/.codex/skills。
 $null = robocopy $skillsSource $TargetDir /MIR /R:2 /W:1 /NFL /NDL /NJH /NJS /NP
 $robocopyExit = $LASTEXITCODE
 if ($robocopyExit -ge 8) {

@@ -1,6 +1,6 @@
 /*
-Tokenized dark QSS template.
-Render with scripts/render_qss_template.py before using in an application.
+可参数化的深色 QSS 模板。
+在实际项目使用前，先用 scripts/render_qss_template.py 渲染成最终 qss 文件。
 */
 
 QWidget {

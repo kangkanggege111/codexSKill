@@ -1,4 +1,4 @@
-param(
+﻿param(
     [string]$SourceDir = "$HOME\.codex\skills",
     [string]$RepoDir = (Split-Path -Parent $PSScriptRoot),
     [int]$DebounceSeconds = 10
@@ -7,6 +7,8 @@ param(
 $ErrorActionPreference = "Stop"
 
 $createdNew = $false
+
+# 全局互斥：避免 watcher 被重复启动成多个实例。
 $mutex = New-Object System.Threading.Mutex($false, "Global\CodexSkillAutoSyncWatcher", [ref]$createdNew)
 if (-not $createdNew) {
     exit 0
@@ -38,6 +40,7 @@ $global:LastEventAt = Get-Date
 function Invoke-Sync {
     $global:PendingSync = $false
     try {
+        # watcher 只做本地同步和本地提交，不自动推送远程。
         & $syncScript -SourceDir $SourceDir -RepoDir $RepoDir -Quiet
         Write-Log "Sync completed."
     }
@@ -53,6 +56,7 @@ $watcher.NotifyFilter = [System.IO.NotifyFilters]'FileName, DirectoryName, LastW
 $watcher.EnableRaisingEvents = $true
 
 $action = {
+    # 任意文件变化都只记一次“待同步”，真正执行交给 debounce 逻辑。
     $global:PendingSync = $true
     $global:LastEventAt = Get-Date
 }
@@ -69,6 +73,7 @@ try {
         if ($global:PendingSync) {
             $age = (Get-Date) - $global:LastEventAt
             if ($age.TotalSeconds -ge $DebounceSeconds) {
+                # 等改动稳定一小段时间后再同步，避免频繁重复提交。
                 Invoke-Sync
             }
         }

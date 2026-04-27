@@ -1,7 +1,7 @@
 /*
-Universal dark QSS template for Qt Widgets applications.
-Base direction: maintainable dark desktop UI with teal-blue accent.
-Use as a starting point, then adjust palette and widget coverage per project.
+Qt Widgets 通用深色 QSS 模板。
+基础方向：稳定、耐看的桌面暗色界面，强调色偏蓝绿。
+建议先作为起点，再按项目需要细调配色和控件覆盖范围。
 */
 
 QWidget {

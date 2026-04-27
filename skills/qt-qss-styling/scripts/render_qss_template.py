@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 
 
+# 默认调色板：用于快速生成一套可落地的深色主题。
 DEFAULT_PALETTE = {
     "BG_0": "#20252b",
     "BG_1": "#171c22",
@@ -24,9 +25,11 @@ DEFAULT_PALETTE = {
 
 
 def load_palette(path: str | None) -> dict[str, str]:
+    # 如果没有传入外部调色板，则直接使用默认配色。
     palette = DEFAULT_PALETTE.copy()
     if not path:
         return palette
+    # 兼容 Windows 下常见的 UTF-8 BOM JSON 文件。
     data = json.loads(Path(path).read_text(encoding="utf-8-sig"))
     for key, value in data.items():
         if key not in palette:
@@ -36,6 +39,7 @@ def load_palette(path: str | None) -> dict[str, str]:
 
 
 def render(template: str, palette: dict[str, str]) -> str:
+    # 按 token 名称做直接替换，保持模板简单透明。
     output = template
     for key, value in palette.items():
         output = output.replace(f"{{{{{key}}}}}", value)
@@ -52,6 +56,7 @@ def main() -> None:
     )
     args = parser.parse_args()
 
+    # 读取模板、合成调色板并输出最终 qss 文件。
     template = Path(args.template).read_text(encoding="utf-8")
     palette = load_palette(args.palette)
     rendered = render(template, palette)

@@ -1,4 +1,4 @@
-param(
+﻿param(
     [string]$SourceDir = "$HOME\.codex\skills",
     [string]$RepoDir = (Split-Path -Parent $PSScriptRoot),
     [string]$CommitMessage = "",
@@ -9,6 +9,7 @@ param(
 
 $ErrorActionPreference = "Stop"
 
+# 输出开关：安静模式下不打印普通进度。
 function Write-Info([string]$Message) {
     if (-not $Quiet) {
         Write-Host $Message
@@ -38,6 +39,8 @@ if (-not (Test-Path $SourceDir)) {
 }
 
 Write-Info "Mirroring skills from $SourceDir to $skillsTarget"
+
+# 用 robocopy 做镜像同步，保持仓库 skills/ 与本机 source 完全一致。
 $null = robocopy $SourceDir $skillsTarget /MIR /R:2 /W:1 /NFL /NDL /NJH /NJS /NP
 $robocopyExit = $LASTEXITCODE
 if ($robocopyExit -ge 8) {
@@ -60,6 +63,7 @@ try {
     git add -A
 
     if ([string]::IsNullOrWhiteSpace($CommitMessage)) {
+        # 默认提交信息带时间戳，便于回看自动同步记录。
         $CommitMessage = "Sync Codex skills $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss')"
     }
 
@@ -72,6 +76,7 @@ try {
     git commit -m $CommitMessage
 
     if ($Push) {
+        # 仅在显式传入 -Push 时才推送远程。
         git push
     }
 }
