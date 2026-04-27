@@ -1,0 +1,15 @@
+{
+  "BG_0": "#1c1f26",
+  "BG_1": "#151922",
+  "BG_2": "#12161d",
+  "SURFACE_0": "#262b35",
+  "SURFACE_1": "#2d3440",
+  "BORDER_0": "#394252",
+  "BORDER_1": "#4a586d",
+  "TEXT_0": "#d8dee9",
+  "TEXT_1": "#edf2f7",
+  "TEXT_MUTED": "#a7b0bf",
+  "TEXT_INV": "#ffffff",
+  "ACCENT_0": "#2d8ac7",
+  "ACCENT_1": "#55b5f0"
+}

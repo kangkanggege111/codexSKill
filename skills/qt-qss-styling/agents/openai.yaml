@@ -1,0 +1,7 @@
+interface:
+  display_name: "Qt QSS Styling"
+  short_description: "Qt QSS authoring from reusable theme patterns."
+  default_prompt: "Use $qt-qss-styling to create or refine a QSS theme for my Qt widgets."
+
+policy:
+  allow_implicit_invocation: true

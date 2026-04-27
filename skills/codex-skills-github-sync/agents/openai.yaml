@@ -1,0 +1,7 @@
+interface:
+  display_name: "Codex Skills GitHub Sync"
+  short_description: "Sync Codex skills to the GitHub backup repo."
+  default_prompt: "Use $codex-skills-github-sync to mirror and push my local Codex skills to GitHub."
+
+policy:
+  allow_implicit_invocation: true

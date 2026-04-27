@@ -1,0 +1,155 @@
+/*
+Tokenized dark QSS template.
+Render with scripts/render_qss_template.py before using in an application.
+*/
+
+QWidget {
+    background-color: {{BG_0}};
+    color: {{TEXT_0}};
+    selection-background-color: {{ACCENT_0}};
+    selection-color: {{TEXT_INV}};
+    outline: 0;
+}
+
+QMainWindow,
+QDialog,
+QFrame,
+QGroupBox,
+QStackedWidget,
+QWidget#centralWidget {
+    background-color: {{BG_0}};
+    color: {{TEXT_0}};
+}
+
+QToolTip {
+    background-color: {{BG_2}};
+    color: {{TEXT_1}};
+    border: 1px solid {{BORDER_1}};
+    padding: 4px 6px;
+}
+
+QLineEdit,
+QPlainTextEdit,
+QTextEdit,
+QAbstractSpinBox,
+QDateEdit,
+QTimeEdit,
+QDateTimeEdit,
+QComboBox,
+QFontComboBox {
+    background-color: {{BG_1}};
+    color: {{TEXT_0}};
+    border: 1px solid {{BORDER_0}};
+    border-radius: 5px;
+    padding: 4px 8px;
+    selection-background-color: {{ACCENT_0}};
+    selection-color: {{TEXT_INV}};
+}
+
+QLineEdit:hover,
+QPlainTextEdit:hover,
+QTextEdit:hover,
+QAbstractSpinBox:hover,
+QDateEdit:hover,
+QTimeEdit:hover,
+QDateTimeEdit:hover,
+QComboBox:hover,
+QFontComboBox:hover {
+    border: 1px solid {{BORDER_1}};
+}
+
+QLineEdit:focus,
+QPlainTextEdit:focus,
+QTextEdit:focus,
+QAbstractSpinBox:focus,
+QDateEdit:focus,
+QTimeEdit:focus,
+QDateTimeEdit:focus,
+QComboBox:focus,
+QFontComboBox:focus {
+    border: 1px solid {{ACCENT_1}};
+}
+
+QPushButton,
+QToolButton {
+    background-color: {{SURFACE_0}};
+    color: {{TEXT_1}};
+    border: 1px solid {{BORDER_0}};
+    border-radius: 6px;
+    padding: 6px 12px;
+}
+
+QPushButton:hover,
+QToolButton:hover {
+    background-color: {{SURFACE_1}};
+    border: 1px solid {{BORDER_1}};
+}
+
+QPushButton:pressed,
+QToolButton:pressed,
+QPushButton:checked,
+QToolButton:checked,
+QPushButton:default {
+    background-color: {{ACCENT_0}};
+    border: 1px solid {{ACCENT_1}};
+    color: {{TEXT_INV}};
+}
+
+QMenuBar,
+QStatusBar,
+QMenu {
+    background-color: {{BG_2}};
+    color: {{TEXT_0}};
+}
+
+QMenu {
+    border: 1px solid {{BORDER_0}};
+}
+
+QMenu::item:selected,
+QTreeView::branch:selected,
+QListView::item:selected,
+QTableView::item:selected {
+    background-color: {{ACCENT_0}};
+    color: {{TEXT_INV}};
+}
+
+QTabWidget::pane {
+    border: 1px solid {{BORDER_0}};
+    background-color: {{BG_0}};
+    border-radius: 6px;
+}
+
+QTabBar::tab {
+    background-color: {{SURFACE_0}};
+    color: {{TEXT_MUTED}};
+    border: 1px solid {{BORDER_0}};
+    padding: 6px 12px;
+    margin-right: 2px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+QTabBar::tab:hover {
+    background-color: {{SURFACE_1}};
+    color: {{TEXT_1}};
+}
+
+QTabBar::tab:selected {
+    background-color: {{BG_0}};
+    color: {{TEXT_INV}};
+    border-bottom: 1px solid {{BG_0}};
+}
+
+QProgressBar {
+    background-color: {{BG_1}};
+    color: {{TEXT_0}};
+    border: 1px solid {{BORDER_0}};
+    border-radius: 6px;
+    text-align: center;
+}
+
+QProgressBar::chunk {
+    background-color: {{ACCENT_0}};
+    border-radius: 5px;
+}
